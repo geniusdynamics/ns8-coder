@@ -49,7 +49,7 @@ buildah config --entrypoint=/ \
     --label="org.nethserver.authorizations=traefik@node:routeadm" \
     --label="org.nethserver.tcp-ports-demand=2" \
     --label="org.nethserver.rootfull=0" \
-    --label="org.nethserver.images=docker.io/postgres:14.2 ghcr.io/coder/coder:${CODER_TAG} docker.io/codercom/code-server:ubuntu" \
+    --label="org.nethserver.images=docker.io/postgres:18.7 ghcr.io/coder/coder:${CODER_TAG} docker.io/codercom/code-server:ubuntu" \
     "${container}"
 # Commit the image
 buildah commit "${container}" "${repobase}/${reponame}"
