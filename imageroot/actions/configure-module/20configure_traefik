@@ -39,7 +39,9 @@ response = agent.tasks.run(
     action='set-route',
     data={
         'instance': os.environ['MODULE_ID'],
-        'url':  'http://127.0.0.1:' + os.environ["TCP_PORT_CODER"],
+        # The pod publishes Coder (7080) on TCP_PORT, the first port: the
+        # second one was for the removed code-server
+        'url':  'http://127.0.0.1:' + os.environ["TCP_PORT"],
         'host': host,
         'http2https': h2hs,
         'lets_encrypt': le

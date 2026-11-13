@@ -13,6 +13,7 @@ Environment=PODMAN_SYSTEMD_UNIT=%n
 EnvironmentFile=%E/state/environment
 # EnvironmentFile=%E/state/secrets/passwords.secret
 Restart=always
+RestartSec=10
 TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/postgresql-app.pid %t/postgresql-app.ctr-id
 ExecStartPre=/bin/mkdir -p %E/state/restore/
@@ -20,7 +21,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/postgresql-app.pid \
     --cidfile %t/postgresql-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/coder.pod-id --replace -d --name postgresql-app \
     --env-file=%E/state/database.env \
-    --volume postgres-data:/var/lib/postgresql/data:Z \
+    --volume postgres-data:/var/lib/postgresql:Z \
     --volume %E/state/restore/:/docker-entrypoint-initdb.d/:Z \
     --env TZ=UTC \
     ${POSTGRES_IMAGE}
