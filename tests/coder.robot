@@ -1,6 +1,9 @@
 *** Settings ***
 Library    SSHLibrary
 
+*** Variables ***
+${HOST}    coder.example.org
+
 *** Test Cases ***
 Check if coder is installed correctly
     ${output}  ${rc} =    Execute Command    add-module ${IMAGE_URL} 1
